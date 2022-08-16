@@ -10,10 +10,22 @@ const GuestList: React.FC = () =>{
         console.log(guests.length);
     };
 
+   const onEnterKeyPress = (e : React.KeyboardEvent<HTMLInputElement>) => {
+        if(e.key === 'Enter')
+        {
+            onClick();
+        }
+    };
+
     return <div>
         <h3>Guest List</h3>
-        <input value={name} onChange={(e) => setName(e.target.value)}/>
-        <button onClick={onClick}>Add Guest</button>
+        <ul>
+            {guests.map(guest => (
+            <li key={guest}>{guest}</li>
+            ))}
+        </ul>
+        <input value={name} onChange={(e) => setName(e.target.value)} onKeyPress={onEnterKeyPress}/>
+        <button onClick={onClick} >Add Guest</button>
         </div>;
 };
 
